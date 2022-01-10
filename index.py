@@ -11,6 +11,9 @@ import time
 import sys
 import yaml
 import pygetwindow
+import gi
+gi.require_version("Wnck", "3.0")
+from gi.repository import Wnck
 
 # Load config file.
 stream = open("config.yaml", 'r')
@@ -452,6 +455,19 @@ def refreshHeroes():
     logger('💪 {} heroes sent to work'.format(hero_clicks))
     goToGame()
 
+def getWindowsWithTitleLinux(title):
+
+    screen = Wnck.Screen.get_default()
+    screen.force_update()  # recommended by documenation
+    window_list = screen.get_windows()
+
+    windowsObjs = []
+
+    for win in window_list:
+        if title in win.get_name():
+            windowsObjs.append(win)
+    
+    return windowsObjs   
 
 def main():
     """Main execution setup and loop"""
@@ -478,10 +494,9 @@ def main():
     time.sleep(5)
     t = c['time_intervals']
     
-
     windows = []
 
-    for w in pygetwindow.getWindowsWithTitle('bombcrypto'):
+    for w in getWindowsWithTitleLinux("bombcrypto"):
         windows.append({
             "window": w,
             "login" : 0,
@@ -495,7 +510,7 @@ def main():
         now = time.time()
 
         for last in windows:
-            last["window"].activate()
+            last["window"].activate(now)
             time.sleep(2)
 
             if now - last["check_for_captcha"] > addRandomness(t['check_for_captcha'] * 60):
@@ -544,5 +559,3 @@ if __name__ == '__main__':
 
 # colocar o botao em pt
 # soh resetar posiçoes se n tiver clickado em newmap em x segundos
-
-
