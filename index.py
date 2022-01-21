@@ -330,6 +330,10 @@ def refreshHeroesPositions():
     # time.sleep(3)
     clickBtn(images['treasure-hunt-icon'])
 
+def refreshScreen():
+    logger('Refreshing window')
+    pyautogui.hotkey('ctrl','f5')
+
 def login():
     global login_attempts
     logger('😿 Checking if game has disconnected')
@@ -501,7 +505,8 @@ def main():
             "login" : 0,
             "heroes" : 0,
             "new_map" : 0,
-            "refresh_heroes" : 0
+            "refresh_heroes" : 0,
+            "refresh_screen" : 0
             })
 
     while True:
@@ -511,6 +516,10 @@ def main():
             logger('Changing window focus')
             last["window"].activate(now)
             time.sleep(2)
+
+            if now - last["refresh_screen"] > addRandomness(t['refresh_screen'] * 60):
+                last["refresh_screen"] = now
+                refreshScreen()
 
             if now - last["heroes"] > addRandomness(t['send_heroes_for_work'] * 60):
                 last["heroes"] = now
