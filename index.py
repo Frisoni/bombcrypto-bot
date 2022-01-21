@@ -517,14 +517,14 @@ def main():
             last["window"].activate(now)
             time.sleep(2)
 
-            if now - last["refresh_screen"] > addRandomness(t['refresh_screen'] * 60):
-                last["refresh_screen"] = now
-                refreshScreen()
-
             if now - last["heroes"] > addRandomness(t['send_heroes_for_work'] * 60):
                 last["heroes"] = now
                 refreshHeroes()
 
+            if now - last["refresh_screen"] > addRandomness(t['refresh_screen'] * 60):
+                last["refresh_screen"] = now
+                refreshScreen()
+                
             if now - last["login"] > addRandomness(t['check_for_login'] * 60):
                 last["login"] = now
                 login()
