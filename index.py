@@ -22,41 +22,7 @@ ch = c['home']
 pause = c['time_intervals']['interval_between_moviments']
 pyautogui.PAUSE = pause
 
-cat = """
-                                                _
-                                                \`*-.
-                                                 )  _`-.
-                                                .  : `. .
-                                                : _   '  \\
-                                                ; *` _.   `*-._
-                                                `-.-'          `-.
-                                                  ;       `       `.
-                                                  :.       .        \\
-                                                  . \  .   :   .-'   .
-                                                  '  `+.;  ;  '      :
-                                                  :  '  |    ;       ;-.
-                                                  ; '   : :`-:     _.`* ;
-                                               .*' /  .*' ; .*`- +'  `*'
-                                               `*-*   `*-*  `*-*'
-=========================================================================
-========== 💰 Have I helped you in any way? All I ask is a tip! 🧾 ======
-========== ✨ Faça sua boa ação de hoje, manda aquela gorjeta! 😊 =======
-=========================================================================
-======================== vvv BCOIN BUSD BNB vvv =========================
-============== 0xbd06182D8360FB7AC1B05e871e56c76372510dDf ===============
-=========================================================================
-===== https://www.paypal.com/donate?hosted_button_id=JVYSC6ZYCNQQQ ======
-=========================================================================
-
->>---> Press ctrl + c to kill the bot.
-
->>---> Some configs can be found in the config.yaml file."""
-
-
-
-
-
-
+cat = """>>---> Press ctrl + c to kill the bot."""
 
 def addRandomness(n, randomn_factor_size=None):
     """Returns n with randomness
@@ -254,9 +220,9 @@ def clickGreenBarButtons():
     offset = 140
 
     green_bars = positions(images['green-bar'], threshold=ct['green_bar'])
-    logger('🟩 %d green bars detected' % len(green_bars))
+    logger('%d green bars detected' % len(green_bars))
     buttons = positions(images['go-work'], threshold=ct['go_to_work_btn'])
-    logger('🆗 %d buttons detected' % len(buttons))
+    logger('%d buttons detected' % len(buttons))
 
 
     not_working_green_bars = []
@@ -264,8 +230,8 @@ def clickGreenBarButtons():
         if not isWorking(bar, buttons):
             not_working_green_bars.append(bar)
     if len(not_working_green_bars) > 0:
-        logger('🆗 %d buttons with green bar detected' % len(not_working_green_bars))
-        logger('👆 Clicking in %d heroes' % len(not_working_green_bars))
+        logger('%d buttons with green bar detected' % len(not_working_green_bars))
+        logger('Clicking in %d heroes' % len(not_working_green_bars))
 
     # se tiver botao com y maior que bar y-10 e menor que y+10
     hero_clicks_cnt = 0
@@ -277,7 +243,7 @@ def clickGreenBarButtons():
         hero_clicks = hero_clicks + 1
         hero_clicks_cnt = hero_clicks_cnt + 1
         if hero_clicks_cnt > 20:
-            logger('⚠️ Too many hero clicks, try to increase the go_to_work_btn threshold')
+            logger('Too many hero clicks, try to increase the go_to_work_btn threshold')
             return
         #cv2.rectangle(sct_img, (x, y) , (x + w, y + h), (0,255,255),2)
     return len(not_working_green_bars)
@@ -293,7 +259,7 @@ def clickFullBarButtons():
             not_working_full_bars.append(bar)
 
     if len(not_working_full_bars) > 0:
-        logger('👆 Clicking in %d heroes' % len(not_working_full_bars))
+        logger('Clicking in %d heroes' % len(not_working_full_bars))
 
     for (x, y, w, h) in not_working_full_bars:
         moveToWithRandomness(x+offset+(w/2),y+(h/2),1)
@@ -323,7 +289,7 @@ def goToGame():
 
 def refreshHeroesPositions():
 
-    logger('🔃 Refreshing Heroes Positions')
+    logger('Refreshing Heroes Positions')
     clickBtn(images['go-back-arrow'])
     clickBtn(images['treasure-hunt-icon'])
 
