@@ -336,16 +336,16 @@ def refreshScreen():
 
 def login():
     global login_attempts
-    logger('😿 Checking if game has disconnected')
+    logger('Checking if game has disconnected')
 
     if login_attempts > 3:
-        logger('🔃 Too many login attempts, refreshing')
+        logger('Too many login attempts, refreshing')
         login_attempts = 0
         pyautogui.hotkey('ctrl','f5')
         return
 
     if clickBtn(images['connect-wallet'], timeout = 10):
-        logger('🎉 Connect wallet button detected, logging in!')
+        logger('Connect wallet button detected, logging in!')
         login_attempts = login_attempts + 1
         #TODO mto ele da erro e poco o botao n abre
         # time.sleep(10)
@@ -374,13 +374,12 @@ def login():
 
     if clickBtn(images['select-wallet-2'], timeout = 20):
         login_attempts = login_attempts + 1
-        # print('sign button clicked')
-        # print('{} login attempt'.format(login_attempts))
-        # time.sleep(25)
-        if clickBtn(images['treasure-hunt-icon'], timeout=25):
-            # print('sucessfully login, treasure hunt btn clicked')
-            login_attempts = 0
-        # time.sleep(15)
+        # new connect metamask button
+        if clickBtn(images['connect-metamask'], timeout = 20):
+            if clickBtn(images['treasure-hunt-icon'], timeout=25):
+                # print('sucessfully login, treasure hunt btn clicked')
+                login_attempts = 0
+            # time.sleep(15)
 
     if clickBtn(images['ok'], timeout=5):
         pass
@@ -427,16 +426,16 @@ def sendHeroesHome():
 
 
 def refreshHeroes():
-    logger('🏢 Search for heroes to work')
+    logger('Search for heroes to work')
 
     goToHeroes()
 
     if c['select_heroes_mode'] == "full":
-        logger('⚒️ Sending heroes with full stamina bar to work', 'green')
+        logger('Sending heroes with full stamina bar to work', 'green')
     elif c['select_heroes_mode'] == "green":
-        logger('⚒️ Sending heroes with green stamina bar to work', 'green')
+        logger('Sending heroes with green stamina bar to work', 'green')
     else:
-        logger('⚒️ Sending all heroes to work', 'green')
+        logger('Sending all heroes to work', 'green')
 
     buttonsClicked = 1
     empty_scrolls_attempts = c['scroll_attemps']
@@ -455,7 +454,7 @@ def refreshHeroes():
             empty_scrolls_attempts = empty_scrolls_attempts - 1
         scroll()
         time.sleep(2)
-    logger('💪 {} heroes sent to work'.format(hero_clicks))
+    logger('{} heroes sent to work'.format(hero_clicks))
     goToGame()
 
 def getWindowsWithTitleLinux(title):
@@ -529,10 +528,10 @@ def main():
                 last["login"] = now
                 login()
 
-            if now - last["new_map"] > t['check_for_new_map_button']:
-                last["new_map"] = now
-                if clickBtn(images['new-map']):
-                    loggerMapClicked()
+            #if now - last["new_map"] > t['check_for_new_map_button']:
+            #    last["new_map"] = now
+            #    if clickBtn(images['new-map']):
+            #        loggerMapClicked()
 
             if now - last["refresh_heroes"] > addRandomness( t['refresh_heroes_positions'] * 60):
                 last["refresh_heroes"] = now
