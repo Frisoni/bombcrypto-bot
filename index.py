@@ -82,7 +82,7 @@ def load_images(dir_path='./targets/'):
     targets = {}
     for file in file_names:
         path = 'targets/' + file
-        if select-wallet not in file:
+        if 'select-wallet' not in file:
             targets[remove_suffix(file, '.png')] = resize_image( cv2.imread(path) )
         else:
             targets[remove_suffix(file, '.png')] = cv2.imread(path)
