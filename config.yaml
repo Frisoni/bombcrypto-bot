@@ -153,3 +153,12 @@
   # Valor padrão : False
   # Opções disponíveis: False ou True
   save_log_to_file: True
+  
+  # [en_US] Zoom from browser
+  # Default value: 100
+  # Available options: 10 to 100
+  #
+  # [pt_BR] Zoom adicionado no navegador
+  # Valor padrão : 100
+  # Opções disponíveis: 10 a 100
+  zoom: 100

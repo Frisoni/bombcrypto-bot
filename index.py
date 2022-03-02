@@ -58,6 +58,18 @@ def remove_suffix(input_string, suffix):
         return input_string[:-len(suffix)]
     return input_string
 
+def resize_image(img):
+    # Sem zoom, retorna a imagem normal    
+    if c['zoom'] == 100:
+        return img
+    # Com zoom, redimenciona a imagem
+    width = int(img.shape[1] * c['zoom'] / 100)
+    height = int(img.shape[0] * c['zoom'] / 100)
+    dim = (width, height)
+  
+    # resize image
+    return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
 def load_images(dir_path='./targets/'):
     """ Programatically loads all images of dir_path as a key:value where the
         key is the file name without the .png suffix
@@ -70,7 +82,7 @@ def load_images(dir_path='./targets/'):
     targets = {}
     for file in file_names:
         path = 'targets/' + file
-        targets[remove_suffix(file, '.png')] = cv2.imread(path)
+        targets[remove_suffix(file, '.png')] = resize_image( cv2.imread(path) )
 
     return targets
 
@@ -299,6 +311,7 @@ def refreshHeroesPositions():
 def refreshScreen():
     logger('Refreshing window')
     pyautogui.hotkey('ctrl','f5')
+    time.sleep(5)
 
 def login():
     global login_attempts
