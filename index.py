@@ -296,20 +296,14 @@ def goToHeroes():
 
 def goToGame():
     # in case of server overload popup
-    clickBtn(images['x'])
-    # time.sleep(3)
-    clickBtn(images['x'])
-
-    clickBtn(images['treasure-hunt-icon'])
+    clickBtn(images['x'], timeout = 10)
+    clickBtn(images['treasure-hunt-icon'], timeout = 10)
 
 def refreshHeroesPositions():
 
     logger('Refreshing Heroes Positions')
     clickBtn(images['go-back-arrow'])
-    clickBtn(images['treasure-hunt-icon'])
-
-    # time.sleep(3)
-    clickBtn(images['treasure-hunt-icon'])
+    clickBtn(images['treasure-hunt-icon'], timeout = 10)
 
 def refreshScreen():
     logger('Refreshing window')
