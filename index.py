@@ -321,7 +321,7 @@ def login():
         return
 
     if clickBtn(images['connect-wallet'], timeout = 10):
-        logger('Connect wallet button detected, logging in!')
+        logger('Connect button detected, logging in!')
         login_attempts = login_attempts + 1
 
     if c['login_type'] == 1:
@@ -336,6 +336,7 @@ def login():
             return
     else:        
         if clickBtn(images['connect-login'], timeout=20):
+            logger('Login connect button detected!')
             login_attempts = login_attempts + 1
             if clickBtn(images['treasure-hunt-icon'], timeout = 15):
                 login_attempts = 0
