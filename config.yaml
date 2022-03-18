@@ -1,4 +1,10 @@
 ---
+  # [en_US] Login type: 1 => metamask, 2 => user/password (must be pre-filled)
+  # Default value: 1
+  #
+  # [pt_BR] Tipo de login: 1 + metamask, 2 =>usuário/senha (devem estar preenchidos)
+  # Valor padrão: 1
+  login_type: 1
 
   # [en_US] Time intervals configuration
   #
@@ -152,7 +158,7 @@
   # [pt_BR] Opção para salvar os logs em arquivo (logs.txt)
   # Valor padrão : False
   # Opções disponíveis: False ou True
-  save_log_to_file: True
+  save_log_to_file: False
   
   # [en_US] Zoom from browser
   # Default value: 100

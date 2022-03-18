@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-    
-from src.logger import logger, loggerMapClicked
+from src.logger import logger
 from cv2 import cv2
 from os import listdir
 from random import randint
@@ -22,7 +22,7 @@ ch = c['home']
 pause = c['time_intervals']['interval_between_moviments']
 pyautogui.PAUSE = pause
 
-cat = """>>---> Press ctrl + c to kill the bot."""
+cat = """Press ctrl + c to kill the bot."""
 
 def addRandomness(n, randomn_factor_size=None):
     """Returns n with randomness
@@ -324,15 +324,22 @@ def login():
         logger('Connect wallet button detected, logging in!')
         login_attempts = login_attempts + 1
 
-    if clickBtn(images['connect-metamask'], timeout = 20):
-        logger('Metamask connect button detected!')
-        login_attempts = login_attempts + 1
+    if c['login_type'] == 1:
+        if clickBtn(images['connect-metamask'], timeout = 20):
+            logger('Metamask connect button detected!')
+            login_attempts = login_attempts + 1
 
-    if clickBtn(images['select-wallet-2'], timeout=20):
-        login_attempts = login_attempts + 1
-        if clickBtn(images['treasure-hunt-icon'], timeout = 15):
-            login_attempts = 0
-        return
+        if clickBtn(images['select-wallet-2'], timeout=20):
+            login_attempts = login_attempts + 1
+            if clickBtn(images['treasure-hunt-icon'], timeout = 15):
+                login_attempts = 0
+            return
+    else:        
+        if clickBtn(images['connect-login'], timeout=20):
+            login_attempts = login_attempts + 1
+            if clickBtn(images['treasure-hunt-icon'], timeout = 15):
+                login_attempts = 0
+            return    
 
     if clickBtn(images['treasure-hunt-icon'], timeout=25):
         login_attempts = 0
@@ -459,7 +466,7 @@ def main():
             "heroes" : 0,
             "new_map" : 0,
             "refresh_heroes" : 0,
-            "refresh_screen" : 0
+            "refresh_screen" : now
             })
 
     while True:
@@ -481,11 +488,6 @@ def main():
             if now - last["login"] > addRandomness(t['check_for_login'] * 60):
                 last["login"] = now
                 login()
-
-            #if now - last["new_map"] > t['check_for_new_map_button']:
-            #    last["new_map"] = now
-            #    if clickBtn(images['new-map']):
-            #        loggerMapClicked()
 
             if now - last["refresh_heroes"] > addRandomness( t['refresh_heroes_positions'] * 60):
                 last["refresh_heroes"] = now
