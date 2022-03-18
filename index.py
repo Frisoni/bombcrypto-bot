@@ -466,7 +466,7 @@ def main():
             "heroes" : 0,
             "new_map" : 0,
             "refresh_heroes" : 0,
-            "refresh_screen" : now
+            "refresh_screen" : time.time()
             })
 
     while True:
