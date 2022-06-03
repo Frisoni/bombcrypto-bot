@@ -4,7 +4,7 @@
   #
   # [pt_BR] Tipo de login: 1 + metamask, 2 =>usuário/senha (devem estar preenchidos)
   # Valor padrão: 1
-  login_type: 1
+  login_type: 2
 
   # [en_US] Time intervals configuration
   #
