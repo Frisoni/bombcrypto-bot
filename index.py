@@ -460,7 +460,7 @@ def main():
     
     windows = []
 
-    for w in getWindowsWithTitleLinux("Bombcrypto"):
+    for w in getWindowsWithTitleLinux("Bombcrypto 2"):
         windows.append({
             "window": w,
             "login" : 0,
