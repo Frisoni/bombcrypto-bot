@@ -348,7 +348,7 @@ def login():
             
         if clickBtn(images['connect-play'], timeout=30):
             logger('Click Play!')
-            if clickBtn(images['treasure-hunt-icon'], timeout = 30):
+            if clickBtn(images['treasure-hunt-icon'], timeout = 60):
                 login_attempts = 0
             return    
 
