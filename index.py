@@ -340,7 +340,7 @@ def login():
             logger('Login connect button detected!')
             login_attempts = login_attempts + 1
             
-        if clickBtn(images['connect-login-2'], timeout=30):
+        if clickBtn(images['connect-login2'], timeout=30):
             logger('Login 2 connect button detected!')
             
         if clickBtn(images['connect-polygon'], timeout=30):
@@ -463,7 +463,7 @@ def main():
     
     windows = []
 
-    for w in getWindowsWithTitleLinux("Bombcrypto 2"):
+    for w in getWindowsWithTitleLinux("Bomber Land"):
         windows.append({
             "window": w,
             "login" : 0,
