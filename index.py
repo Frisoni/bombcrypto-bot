@@ -335,10 +335,20 @@ def login():
                 login_attempts = 0
             return
     else:        
-        if clickBtn(images['connect-login'], timeout=20):
+
+        if clickBtn(images['connect-login'], timeout=30):
             logger('Login connect button detected!')
             login_attempts = login_attempts + 1
-            if clickBtn(images['treasure-hunt-icon'], timeout = 15):
+            
+        if clickBtn(images['connect-login-2'], timeout=30):
+            logger('Login 2 connect button detected!')
+            
+        if clickBtn(images['connect-polygon'], timeout=30):
+            logger('Selecting Polygon!')
+            
+        if clickBtn(images['connect-play'], timeout=30):
+            logger('Click Play!')
+            if clickBtn(images['treasure-hunt-icon'], timeout = 30):
                 login_attempts = 0
             return    
 
@@ -446,13 +456,6 @@ def main():
     global images
     images = load_images()
 
-    if ch['enable']:
-        global home_heroes
-        home_heroes = loadHeroesToSendHome()
-    else:
-        print('>>---> Home feature not enabled')
-    print('\n')
-
     print(cat)
     
     time.sleep(5)
@@ -476,11 +479,7 @@ def main():
         for last in windows:
             logger('Changing window focus')
             last["window"].activate(now)
-            time.sleep(2)
-
-            if now - last["heroes"] > addRandomness(t['send_heroes_for_work'] * 60):
-                last["heroes"] = now
-                refreshHeroes()
+            time.sleep(20)
 
             if now - last["refresh_screen"] > addRandomness(t['refresh_screen'] * 60):
                 last["refresh_screen"] = now
@@ -489,10 +488,6 @@ def main():
             if now - last["login"] > addRandomness(t['check_for_login'] * 60):
                 last["login"] = now
                 login()
-
-            if now - last["refresh_heroes"] > addRandomness( t['refresh_heroes_positions'] * 60):
-                last["refresh_heroes"] = now
-                refreshHeroesPositions()
 
             logger(None, progress_indicator=True)
 

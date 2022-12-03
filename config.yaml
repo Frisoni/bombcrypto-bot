@@ -58,7 +58,7 @@
     #
     # [pt_BR] Intervalo de tempo entre atualização ctrl f5
     # Valor padrão (em minutos): 15
-    refresh_screen: 120
+    refresh_screen: 80
 
   # [en_US] How confident the bot needs to be to click the buttons (values from 0 to 1. 0 is the minimum value, 1 is the maximum value)
   #
