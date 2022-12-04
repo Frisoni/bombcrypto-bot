@@ -347,6 +347,8 @@ def login():
         if clickBtn(images['connect-login'], timeout=30):
             logger('Login connect button detected!')
             login_attempts = login_attempts + 1
+        else:
+            return
             
         if clickBtn(images['connect-login2'], timeout=30):
             logger('Login 2 connect button detected!')
