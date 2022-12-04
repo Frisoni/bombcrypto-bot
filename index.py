@@ -295,12 +295,13 @@ def goToHeroes():
 
     #TODO tirar o sleep quando colocar o pulling
     time.sleep(1)
-    clickBtn(images['hero-icon'])
+    clickBtn(images['hero-icon'], timeout=25)
     time.sleep(randint(1,3))
 
 def goToGame():
     # in case of server overload popup
-    clickBtn(images['x'], timeout = 10)
+    clickBtn(images['x'], timeout = 20)
+    pyautogui.click()
     clickBtn(images['treasure-hunt-icon'], timeout = 10)
 
 def refreshHeroesPositions():
