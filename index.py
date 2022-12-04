@@ -236,7 +236,7 @@ def isWorking(bar, buttons):
 
 def clickGreenBarButtons():
     # ele clicka nos q tao trabaiano mas axo q n importa
-    offset = 180
+    offset = 250
 
     green_bars = positions(images['green-bar'], threshold=ct['green_bar'])
     logger('%d green bars detected' % len(green_bars))
@@ -289,7 +289,7 @@ def clickFullBarButtons():
     return len(not_working_full_bars)
 
 def goToHeroes():
-    if clickBtn(images['go-up-arrow'], timeout=25):
+    if clickBtn(images['go-up-arrow'], timeout=40):
         global login_attempts
         login_attempts = 0
 
