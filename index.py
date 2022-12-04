@@ -427,13 +427,14 @@ def refreshHeroes():
             buttonsClicked = clickGreenBarButtons()
         else:
             buttonsClicked = clickButtons()
+            empty_scrolls_attempts = 0
 
         sendHeroesHome()
 
-        #if buttonsClicked == 0:
-        #    empty_scrolls_attempts = empty_scrolls_attempts - 1
-        #scroll()
-        #time.sleep(2)
+        if buttonsClicked == 0:
+            empty_scrolls_attempts = empty_scrolls_attempts - 1
+        scroll()
+        time.sleep(2)
     logger('{} heroes sent to work'.format(hero_clicks))
     goToGame()
 
