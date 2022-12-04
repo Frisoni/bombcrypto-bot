@@ -196,6 +196,10 @@ def scroll():
 
 
 def clickButtons():
+    # click all heroes to work
+    clickBtn(images['go-work-all'], timeout=25)
+    logger('all heroes to work')
+    return
     buttons = positions(images['go-work'], threshold=ct['go_to_work_btn'])
     # print('buttons: {}'.format(len(buttons)))
     for (x, y, w, h) in buttons:
@@ -285,7 +289,7 @@ def clickFullBarButtons():
     return len(not_working_full_bars)
 
 def goToHeroes():
-    if clickBtn(images['go-back-arrow']):
+    if clickBtn(images['go-up-arrow'], timeout=25):
         global login_attempts
         login_attempts = 0
 
@@ -313,6 +317,9 @@ def refreshScreen():
 def login():
     global login_attempts
     logger('Checking if game has disconnected')
+
+    if clickBtn(images['treasure-hunt-icon'], timeout=25):
+        return
 
     if login_attempts > 5:
         logger('Too many login attempts, refreshing')
@@ -422,10 +429,10 @@ def refreshHeroes():
 
         sendHeroesHome()
 
-        if buttonsClicked == 0:
-            empty_scrolls_attempts = empty_scrolls_attempts - 1
-        scroll()
-        time.sleep(2)
+        #if buttonsClicked == 0:
+        #    empty_scrolls_attempts = empty_scrolls_attempts - 1
+        #scroll()
+        #time.sleep(2)
     logger('{} heroes sent to work'.format(hero_clicks))
     goToGame()
 
@@ -480,6 +487,10 @@ def main():
             logger('Changing window focus')
             last["window"].activate(now)
             time.sleep(20)
+
+            if now - last["heroes"] > addRandomness(t['send_heroes_for_work'] * 60):
+                last["heroes"] = now
+                refreshHeroes()
 
             if now - last["refresh_screen"] > addRandomness(t['refresh_screen'] * 60):
                 last["refresh_screen"] = now
