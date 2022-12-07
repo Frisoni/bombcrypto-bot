@@ -236,7 +236,7 @@ def isWorking(bar, buttons):
 
 def clickGreenBarButtons():
     # ele clicka nos q tao trabaiano mas axo q n importa
-    offset = 250
+    offset = 150
 
     green_bars = positions(images['green-bar'], threshold=ct['green_bar'])
     logger('%d green bars detected' % len(green_bars))
@@ -248,6 +248,7 @@ def clickGreenBarButtons():
     for bar in green_bars:
         if not isWorking(bar, buttons):
             not_working_green_bars.append(bar)
+    not_working_green_bars = green_bars
     if len(not_working_green_bars) > 0:
         logger('%d buttons with green bar detected' % len(not_working_green_bars))
         logger('Clicking in %d heroes' % len(not_working_green_bars))
