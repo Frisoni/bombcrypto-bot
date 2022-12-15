@@ -291,7 +291,7 @@ def clickFullBarButtons():
 
 def goToHeroes():
     
-    offset = 100
+    offset = 50
 
     up_arrow = positions(images['info-arrow'])
     for (x, y, w, h) in up_arrow:
@@ -299,7 +299,7 @@ def goToHeroes():
         pyautogui.click()
         global login_attempts
         login_attempts = 0
-        exit
+        break
 
     #TODO tirar o sleep quando colocar o pulling
     time.sleep(1)
