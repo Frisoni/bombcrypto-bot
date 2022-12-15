@@ -290,9 +290,16 @@ def clickFullBarButtons():
     return len(not_working_full_bars)
 
 def goToHeroes():
-    if clickBtn(images['go-up-arrow'], timeout=40):
+    
+    offset = 100
+
+    up_arrow = positions(images['info-arrow'])
+    for (x, y, w, h) in up_arrow:
+        moveToWithRandomness(x+(w/2),y-offset,1)
+        pyautogui.click()
         global login_attempts
         login_attempts = 0
+        exit
 
     #TODO tirar o sleep quando colocar o pulling
     time.sleep(1)
