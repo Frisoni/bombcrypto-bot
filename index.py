@@ -336,9 +336,9 @@ def login():
         pyautogui.hotkey('ctrl','f5')
         return
 
-    if clickBtn(images['connect-wallet'], timeout = 10):
-        logger('Connect button detected, logging in!')
-        login_attempts = login_attempts + 1
+    #if clickBtn(images['connect-wallet'], timeout = 10):
+    #    logger('Connect button detected, logging in!')
+    #    login_attempts = login_attempts + 1
 
     if c['login_type'] == 1:
         if clickBtn(images['connect-metamask'], timeout = 20):
@@ -369,6 +369,13 @@ def login():
             if clickBtn(images['treasure-hunt-icon'], timeout = 60):
                 login_attempts = 0
             return    
+            
+        # Check Claim
+        if clickBtn(images['claim-bt'], timeout=30):
+            if clickBtn(images['claim-ok'], timeout = 15):
+                if clickBtn(images['treasure-hunt-icon'], timeout = 60):
+                    login_attempts = 0
+                return    
 
     if clickBtn(images['treasure-hunt-icon'], timeout=25):
         login_attempts = 0
