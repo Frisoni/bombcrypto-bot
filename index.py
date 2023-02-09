@@ -423,6 +423,10 @@ def sendHeroesHome():
 
 
 def refreshHeroes():
+
+    
+    clickBtn(images['treasure-hunt-icon'], timeout = 20)
+
     logger('Search for heroes to work')
 
     goToHeroes()
