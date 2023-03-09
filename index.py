@@ -513,7 +513,7 @@ def main():
 
             if now - last["heroes"] > addRandomness(t['send_heroes_for_work'] * 60):
                 last["heroes"] = now
-                if len(positions(images['treasure-hunt-icon']))==0:
+                if len(positions(images['check-treasure']))==0:
                     continue
                 refreshHeroes()
 
